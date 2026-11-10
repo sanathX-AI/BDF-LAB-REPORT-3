@@ -242,28 +242,36 @@ const books = await db.all(getBooksQuery, queryParams);
 
 ## 8. Newman Test Results (18 Tests / 36 Assertions Passed)
 
+All 18 requests and 36 test assertions executed against the live Render API using **Newman**:
+
+### Live API Test URLs
+
+| # | Method | Live URL | Expected |
+|---|---|---|---|
+| 1 | GET | [/books/](https://bdf-lab-report-3.onrender.com/books/) | 200 OK |
+| 2 | GET | [/books/?search_q=Clean](https://bdf-lab-report-3.onrender.com/books/?search_q=Clean) | 200 OK |
+| 3 | GET | [/books/?order_by=price&order=ASC](https://bdf-lab-report-3.onrender.com/books/?order_by=price&order=ASC) | 200 OK |
+| 4 | GET | [/books/?order_by=price&order=DESC](https://bdf-lab-report-3.onrender.com/books/?order_by=price&order=DESC) | 200 OK |
+| 5 | GET | [/books/?limit=3&offset=0](https://bdf-lab-report-3.onrender.com/books/?limit=3&offset=0) | 200 OK |
+| 6 | GET | [/books/?min_price=400&max_price=600](https://bdf-lab-report-3.onrender.com/books/?min_price=400&max_price=600) | 200 OK |
+| 7 | GET | [/books/1/](https://bdf-lab-report-3.onrender.com/books/1/) | 200 OK |
+| 8 | POST | [/books/](https://bdf-lab-report-3.onrender.com/books/) | 201 Created |
+| 9 | POST | [/books/ (missing title)](https://bdf-lab-report-3.onrender.com/books/) | 400 Bad Request |
+| 10 | POST | [/books/ (missing author)](https://bdf-lab-report-3.onrender.com/books/) | 400 Bad Request |
+| 11 | POST | [/books/ (bad price)](https://bdf-lab-report-3.onrender.com/books/) | 400 Bad Request |
+| 12 | GET | [/books/?order_by=injection_attempt](https://bdf-lab-report-3.onrender.com/books/?order_by=injection_attempt) | 400 Bad Request |
+| 13 | GET | [/books/?min_price=900&max_price=300](https://bdf-lab-report-3.onrender.com/books/?min_price=900&max_price=300) | 400 Bad Request |
+| 14 | PUT | [/books/2/](https://bdf-lab-report-3.onrender.com/books/2/) | 200 OK |
+| 15 | DELETE | [/books/10/](https://bdf-lab-report-3.onrender.com/books/10/) | 200 OK |
+| 16 | GET | [/books/99999/](https://bdf-lab-report-3.onrender.com/books/99999/) | 404 Not Found |
+| 17 | PUT | [/books/99999/](https://bdf-lab-report-3.onrender.com/books/99999/) | 404 Not Found |
+| 18 | DELETE | [/books/99999/](https://bdf-lab-report-3.onrender.com/books/99999/) | 404 Not Found |
+
+### Newman Terminal Output
+
+![Newman Test Results - All 36 Assertions Passed](screenshots/newman-test-results.png)
+
 ```
-BDF Lab 03 - REST API, Query Parameters & Validation
-
-1. GET All Books (Default)         - 200 OK  [PASS]
-2. GET Books - Search by Title     - 200 OK  [PASS]
-3. GET Books - Sort by Price ASC   - 200 OK  [PASS]
-4. GET Books - Sort by Price DESC  - 200 OK  [PASS]
-5. GET Books - Pagination          - 200 OK  [PASS]
-6. GET Books - Price Range Filter  - 200 OK  [PASS]
-7. GET Single Book by ID           - 200 OK  [PASS]
-8. POST Create Book                - 201 Created [PASS]
-9. POST Reject Missing Title       - 400 Bad Request [PASS]
-10. POST Reject Missing Author     - 400 Bad Request [PASS]
-11. POST Reject Non-Numeric Price  - 400 Bad Request [PASS]
-12. GET Reject Invalid order_by    - 400 Bad Request [PASS]
-13. GET Reject min > max price     - 400 Bad Request [PASS]
-14. PUT Update Book Details        - 200 OK  [PASS]
-15. DELETE Book by ID              - 200 OK  [PASS]
-16. GET Non-Existent ID            - 404 Not Found [PASS]
-17. PUT Non-Existent ID            - 404 Not Found [PASS]
-18. DELETE Non-Existent ID         - 404 Not Found [PASS]
-
 iterations: 1 | requests: 18 | assertions: 36 | failed: 0
 SUCCESS: ALL 36 ASSERTIONS PASSED!
 ```
