@@ -5,7 +5,7 @@
 **Student Name:** K. Sanath Kumar  
 **Registration Number:** 252UR5070  
 **Section:** AIDE 2A 106  
-
+**Live Deployed API:** [https://bdf-lab-report-3.onrender.com](https://bdf-lab-report-3.onrender.com)  
 ---
 
 ## 1. Project Objective
@@ -322,3 +322,4 @@ npm run dev
 # 5. Run automated Newman tests
 npm run test:api
 ```
+
